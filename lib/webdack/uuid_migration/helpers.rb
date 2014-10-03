@@ -79,7 +79,7 @@ module Webdack
       # @param column [Symbol]
       # @return [String]
       def to_uuid_pg(column)
-        "uuid(lpad(replace(text(#{column}),'-',''), 32, '0'))"
+        "uuid(lpad(replace(text(#{column}),'-',''), 32, md5(to_char(#{column}, '999'))))"
       end
     end
   end
